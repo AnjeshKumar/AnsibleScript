@@ -2,7 +2,13 @@
 - name: Check connectivity to remote servers
   hosts: all #servergroup01  
 
+  vars:
+    test_variable: "my test variable"
+
   tasks:
-    - name: ping
-      msg: "System {{ inventory_hostname }} have uuid {{ ansible_product_uuid }}"
+    - name: DISPLAY TEST_VARIABLE
+      debug:
+        var: test_variable
+  tasks:
+    - name: ping     
       ping:
