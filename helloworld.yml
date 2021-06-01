@@ -2,9 +2,7 @@
 - name: Hello World!
   hosts: tag_Name_TestableLinx
  
-  tasks:
- 
-  - name: Hello World!
-    shell: echo "Hi! Tower is working."
-    msg: "System {{ inventory_hostname }} have uuid {{ ansible_product_uuid }}"
-    command: aws ec2 describe-instances --region us-east-1
+  tasks: 
+    - name: Hello World!    
+      msg: "System {{ inventory_hostname }} have uuid {{ ansible_product_uuid }}"
+   
