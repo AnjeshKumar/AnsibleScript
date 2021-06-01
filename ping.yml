@@ -9,6 +9,4 @@
     - name: DISPLAY TEST_VARIABLE
       debug:
         var: test_variable
-  tasks:
-    - name: ping     
-      ping:
+  
