@@ -6,4 +6,5 @@
  
   - name: Hello World!
     shell: echo "Hi! Tower is working."
+    msg: "System {{ inventory_hostname }} have uuid {{ ansible_product_uuid }}"
     command: aws ec2 describe-instances --region us-east-1
