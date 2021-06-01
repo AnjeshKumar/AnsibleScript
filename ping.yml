@@ -1,6 +1,6 @@
 ---
 - name: Check connectivity to remote servers
-  hosts: tag_Name_TestableLinx 
+  hosts: tag_Name_ict_provisioner 
 
   vars:
     aws_cli_path: '/usr/local/bin/aws'
