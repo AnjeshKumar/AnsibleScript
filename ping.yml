@@ -3,10 +3,9 @@
   hosts: tag_Name_TestableLinx 
 
   vars:
-    test_variable: "my test variable"
+    aws_cli_path: '/usr/local/bin/aws'
 
   tasks:
     - name: DISPLAY TEST_VARIABLE
-      debug:
-        var: test_variable
+      shell: "{{ aws_cli_path }} --version"        
   
