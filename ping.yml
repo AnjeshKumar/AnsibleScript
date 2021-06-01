@@ -1,6 +1,6 @@
 ---
 - name: Check connectivity to remote servers
-  hosts: all #servergroup01  
+  hosts: tag_Name_TestableLinx 
 
   vars:
     test_variable: "my test variable"
