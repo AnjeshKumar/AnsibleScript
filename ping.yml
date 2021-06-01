@@ -1,7 +1,8 @@
 ---
 - name: Check connectivity to remote servers
   hosts: all #servergroup01  
-  msg: "System {{ inventory_hostname }} have uuid {{ ansible_product_uuid }}"
+
   tasks:
     - name: ping
+      msg: "System {{ inventory_hostname }} have uuid {{ ansible_product_uuid }}"
       ping:
