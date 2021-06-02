@@ -7,5 +7,10 @@
 
   tasks:
     - name: DISPLAY TEST_VARIABLE
-      shell: "{{ aws_cli_path }} --version"        
+      shell: "{{ aws_cli_path }} --version"  
+      shell: |
+        {{ aws_cli_path }} resource-groups update-group \
+            --group-name "RG_Win_Teastable" \
+            --description "Group of win EC2 testable instances"
+            
   
