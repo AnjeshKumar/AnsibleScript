@@ -3,7 +3,7 @@
   hosts: tag_Name_ict_provisioner 
 
   vars:
-    aws_cli_path: '/usr/local/bin/aws'
+    aws_cli_path: '/usr/bin/aws'
 
   tasks:
     - name: DISPLAY TEST_VARIABLE
