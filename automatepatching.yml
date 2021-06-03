@@ -11,7 +11,7 @@
   tasks:
     - name: Create maintenance window for aws OS patching     
       shell: |            
-        {{ aws_cli_path }} aws ssm create-maintenance-window \
+        {{ aws_cli_path }} ssm create-maintenance-window \
             --name {{ mw_name }} \
             --schedule "rate(5 minutes)" \
             --duration 2 \
