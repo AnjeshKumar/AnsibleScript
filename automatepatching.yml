@@ -4,16 +4,16 @@
 
   vars:
     aws_cli_path: '/usr/bin/aws'
-    resources_grp: "{{ resources_grp_name }}
+    resources_grp: "{{ resources_grp_name }}"
     
 
   tasks:
     - name: Create resource-groups and register the created group name     
       shell: |            
         {{ aws_cli_path }} resource-groups create-group \
-            --name {{ resources_grp }} \            
-            --resource-query '{"Type":"TAG_FILTERS_1_0","Query":"{\"ResourceTypeFilters\":[\"AWS::EC2::Instance\"],\"TagFilters\":[{\"Key\":\"PatchGroup\",\"Values\":[\"TestableWinGrp\"]}]}"}' \
-            --description "Group of win EC2 testable instances"            
+            --name {{ resources_grp }} \
+            --description "Group of win EC2 testable instances" \
+            --resource-query '{"Type":"TAG_FILTERS_1_0","Query":"{\"ResourceTypeFilters\":[\"AWS::EC2::Instance\"],\"TagFilters\":[{\"Key\":\"PatchGroup\",\"Values\":[\"TestableWinGrp\"]}]}"}'          
       register: resource_groups_output    
   
     - name: Get the resources group name from output
