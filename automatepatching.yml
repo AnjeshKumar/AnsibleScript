@@ -19,7 +19,7 @@
   
     - name: Get the resources group name from output
       set_fact:
-        resources_grp: "{{ res_query.stdout | from_json | json_query('Group.Name')}}"
+        resources_grp: "{{ resource_groups_output.stdout | from_json | json_query('Group.Name')}}"
         
     - name: DISPLAY aurora_cluster
       debug:
