@@ -11,12 +11,12 @@
   tasks:
     - name: Create maintenance window for aws OS patching     
       shell: |            
-        {{ aws_cli_path }} ssm create-maintenance-window \
-            --name {{ mw_nm }} \
-            --schedule "'rate(5 minutes)'" \
+        {{ aws_cli_path }}  ssm create-maintenance-window \
+            --name "MW_WIN_Testable" \
+            --schedule 'rate(5 minutes)' \
             --duration 2 \
             --cutoff 1 \
-            --allow-unassociated-targets                              
+            --allow-unassociated-targets                            
       register: mv_output    
   
     - name: Get the mv_output from output
