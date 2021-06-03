@@ -5,24 +5,27 @@
   vars:
     aws_cli_path: '/usr/bin/aws'
     resources_grp: "{{ resources_grp_name }}"
+    mw_name: "{{ mw_name }}"
     
 
   tasks:
-    - name: Create resource-groups and register the created group name     
+    - name: Create maintenance window for aws OS patching     
       shell: |            
-        {{ aws_cli_path }} resource-groups create-group \
-            --region us-east-1 \
-            --name {{ resources_grp }} \
-            --description "Group of win EC2 testable instances" \
-            --resource-query '{"Type":"TAG_FILTERS_1_0","Query":"{\"ResourceTypeFilters\":[\"AWS::EC2::Instance\"],\"TagFilters\":[{\"Key\":\"PatchGroup\",\"Values\":[\"TestableWinGrp\"]}]}"}'          
-      register: resource_groups_output    
+        {{ aws_cli_path }} aws ssm create-maintenance-window \
+            --name {{ mw_name }} \
+            --schedule "rate(5 minutes)" \
+            --duration 2 \
+            --cutoff 1 \
+            --allow-unassociated-targets \
+            --tags "Key=Purpose,Value=Tutorial"          
+      register: mv_output    
   
-    - name: Get the resources group name from output
+    - name: Get the mv_output from output
       set_fact:
-        resources_grp: "{{ resource_groups_output.stdout | from_json | json_query('Group.Name')}}"
+        mw_id: "{{ mv_output.stdout | from_json | json_query('WindowId')}}"
         
     - name: DISPLAY aurora_cluster
       debug:
-        var: resources_grp
+        var: mw_id
               
   
