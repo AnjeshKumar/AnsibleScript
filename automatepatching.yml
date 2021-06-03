@@ -5,19 +5,18 @@
   vars:
     aws_cli_path: '/usr/bin/aws'
     resources_grp: "{{ resources_grp_name }}"
-    mw_name: "{{ mw_name }}"
+    mw_nm: "{{ mw_name }}"
     
 
   tasks:
     - name: Create maintenance window for aws OS patching     
       shell: |            
         {{ aws_cli_path }} ssm create-maintenance-window \
-            --name {{ mw_name }} \
+            --name {{ mw_nm }} \
             --schedule "rate(5 minutes)" \
             --duration 2 \
             --cutoff 1 \
-            --allow-unassociated-targets \
-            --tags "Key=Purpose,Value=Tutorial"          
+            --allow-unassociated-targets                              
       register: mv_output    
   
     - name: Get the mv_output from output
