@@ -4,10 +4,12 @@
 
   vars:
     aws_cli_path: '/usr/bin/aws'
+    name_var: {{ name }}
+    last_var: {{ last }}
 
   tasks:
     - name: DISPLAY TEST_VARIABLE
-      shell: "{{ aws_cli_path }} --version"  
+      shell: "aws_cli_path --version"  
       shell: |
         {{ aws_cli_path }} resource-groups update-group \
             --region "us-east-1" \
@@ -18,7 +20,7 @@
   
     - name: DISPLAY TEST_VARIABLE
       debug:
-        var: res_query
+        var: name_var
         
     
     - name: parse the response and check if our Aurora cluster is there
