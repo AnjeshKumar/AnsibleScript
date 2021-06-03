@@ -13,7 +13,7 @@
       shell: |            
         {{ aws_cli_path }} ssm create-maintenance-window \
             --name {{ mw_nm }} \
-            --schedule "rate(5 minutes)" \
+            --schedule "'rate(5 minutes)'" \
             --duration 2 \
             --cutoff 1 \
             --allow-unassociated-targets                              
