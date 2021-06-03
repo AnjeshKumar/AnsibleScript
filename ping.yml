@@ -13,11 +13,11 @@
             --region "us-east-1" \
             --group-name "RG_Win_Testable" \
             --description "Group of win EC2 testable instances"
-            
+      register: res_query     
    
-  tasks:
+  
     - name: DISPLAY TEST_VARIABLE
       debug:
-        var: aws_cli_path
+        var: res_query
             
   
