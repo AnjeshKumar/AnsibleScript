@@ -11,10 +11,9 @@
     - name: Create resource-groups and register the created group name     
       shell: |            
         {{ aws_cli_path }} resource-groups create-group \
-            --name {{ resources_grp }} \
-            --description "Group of win EC2 testable instances" \
-            --resource-query '{"Type":"TAG_FILTERS_1_0","Query":"{\"ResourceTypeFilters\":[\"AWS::EC2::Instance\"],\"TagFilters\":[{\"Key\":\"PatchGroup\",\"Values\":[\"TestableWinGrp\"]}]}"}'
-            
+            --name {{ resources_grp }} \            
+            --resource-query '{"Type":"TAG_FILTERS_1_0","Query":"{\"ResourceTypeFilters\":[\"AWS::EC2::Instance\"],\"TagFilters\":[{\"Key\":\"PatchGroup\",\"Values\":[\"TestableWinGrp\"]}]}"}' \
+            --description "Group of win EC2 testable instances"            
       register: resource_groups_output    
   
     - name: Get the resources group name from output
