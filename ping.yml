@@ -19,5 +19,14 @@
     - name: DISPLAY TEST_VARIABLE
       debug:
         var: res_query
-            
+        
+    
+    - name: parse the response and check if our Aurora cluster is there
+      set_fact:
+        aurora_cluster: "{{ aurora_cluster_query.stdout | from_json | json_query('Group[1]')}}"
+        
+    - name: DISPLAY aurora_cluster
+      debug:
+        var: aurora_cluster
+              
   
