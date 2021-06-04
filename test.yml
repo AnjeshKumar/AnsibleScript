@@ -1,0 +1,37 @@
+---
+- name: Automate the aws os pacthing activity
+  hosts: tag_Name_ict_provisioner 
+
+  vars:
+    aws_cli_path: '/usr/bin/aws'
+    resources_grp: "{{ resources_grp_name }}"
+    
+
+  tasks:
+    - name: Create resource-groups and register the created group name     
+      shell: |            
+        {{ aws_cli_path }} resource-groups create-group \
+            --region us-east-1 \
+            --name {{ resources_grp }} \
+            --description "Group of win EC2 testable instances" \
+            --resource-query '{"Type":"TAG_FILTERS_1_0","Query":"{\"ResourceTypeFilters\":[\"AWS::EC2::Instance\"],\"TagFilters\":[{\"Key\":\"PatchGroup\",\"Values\":[\"TestableWinGrp\"]}]}"}'          
+      register: resource_groups_output    
+  
+    - name: Get the resources group name from output
+      set_fact:
+        resources_grp: "{{ resource_groups_output.stdout | from_json | json_query('Group.Name')}}"
+        
+    - name: Create maintenance window for aws OS patching     
+      shell: |            
+        {{ aws_cli_path }}  ssm create-maintenance-window \
+            --region us-east-1 \
+            --name "MW_WIN_Testable" \
+            --schedule 'rate(5 minutes)' \
+            --duration 2 \
+            --cutoff 1 \
+            --allow-unassociated-targets                            
+      register: mv_output    
+  
+    - name: Get the mv_output from output
+      set_fact:
+        mw_id: "{{ mv_output.stdout | from_json | json_query('WindowId')}}"

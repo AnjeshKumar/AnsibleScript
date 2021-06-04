@@ -6,26 +6,48 @@
     aws_cli_path: '/usr/bin/aws'
     resources_grp: "{{ resources_grp_name }}"
     mw_nm: "{{ mw_name }}"
+    mw_id: "mw-0333087b1a69c0a41" 
     
 
   tasks:
-    - name: Create maintenance window for aws OS patching     
+    - name: Register target group for maintenance window     
       shell: |            
-        {{ aws_cli_path }}  ssm create-maintenance-window \
+        {{ aws_cli_path }}  ssm register-target-with-maintenance-window \
             --region us-east-1 \
-            --name "MW_WIN_Testable" \
-            --schedule 'rate(5 minutes)' \
-            --duration 2 \
-            --cutoff 1 \
-            --allow-unassociated-targets                            
-      register: mv_output    
+            --window-id {{ mw_id }} \
+            --name "Win_Testable_Target" \
+            --resource-type "RESOURCE_GROUP" \
+            --target "Key=resource-groups:Name,Values=RG_Win_Testable"                           
+      register: target_output    
   
-    - name: Get the mv_output from output
+    - name: Get the target_output from output
       set_fact:
-        mw_id: "{{ mv_output.stdout | from_json | json_query('WindowId')}}"
+        target_id: "{{ target_output.stdout | from_json | json_query('WindowTargetId')}}"
         
-    - name: DISPLAY aurora_cluster
+    - name: DISPLAY target_id
       debug:
-        var: mw_id
+        var: target_id
+        
+    - name: Register task for maintenace window and target     
+      shell: |            
+        {{ aws_cli_path }}  ssm register-task-with-maintenance-window \
+            --region us-east-1 \
+            --task-type "RUN_COMMAND" \
+            --window-id {{ mw_id }} \
+            --name "WIN_Patch_Task" \
+            --task-arn "AWS-ApplyPatchBaseline" \
+            --max-concurrency 1 \
+            --max-errors 1 \
+            --priority 1 \
+            --targets "Key=WindowTargetIds ,Values={{ target_id }}"                          
+      register: task_output   
+      
+    - name: Get the task_output from output
+      set_fact:
+        task_id: "{{ task_output.stdout | from_json | json_query('WindowTaskId')}}"
+        
+    - name: DISPLAY task_id
+      debug:
+        var: task_id
               
   
