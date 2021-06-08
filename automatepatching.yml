@@ -26,7 +26,7 @@
       shell: |            
         {{ aws_cli_path }}  ssm create-maintenance-window \
             --region us-east-1 \
-            --name "MW_WIN_Testable" \
+            --name "MW_WIN_Testable1" \
             --schedule 'rate(5 minutes)' \
             --duration 2 \
             --cutoff 1 \
@@ -42,7 +42,7 @@
         {{ aws_cli_path }}  ssm register-target-with-maintenance-window \
             --region us-east-1 \
             --window-id {{ mw_id }} \
-            --name "Win_Testable_Target" \
+            --name "Win_Testable_Target1" \
             --resource-type "RESOURCE_GROUP" \
             --target "Key=resource-groups:Name,Values=RG_Win_Testable"                           
       register: target_output    
