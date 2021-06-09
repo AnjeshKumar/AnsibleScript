@@ -10,7 +10,7 @@
   tasks:
     - name: DISPLAY TEST_VARIABLE
       shell: |            
-        {{ aws_cli_path }} --version    
+        {{ aws_cli_path }} s3 list    
     
     - name: DISPLAY TEST_VARIABLE
       debug:
