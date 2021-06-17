@@ -11,14 +11,14 @@
   tasks:
     - name: DISPLAY Operation
       debug:
-        var: operation
+        var: Description
+        var: ResourceQuery.Type
 
     - name: Create resource-groups and register the created group name     
       shell: |            
-        {{ aws_cli_path }} resource-groups create-group \
-            --region us-east-1 \
-            --name {{ resources_grp }} \
-            --description "Group of win EC2 testable instances" \
+        {{ aws_cli_path }} resource-groups create-group \            
+            --name {{ Name }} \
+            --description {{ Description }} \
             --resource-query '{"Type":"TAG_FILTERS_1_0","Query":"{\"ResourceTypeFilters\":[\"AWS::EC2::Instance\"],\"TagFilters\":[{\"Key\":\"PatchGroup\",\"Values\":[\"TestableWinGrp\"]}]}"}'          
       register: resource_groups_output
       when: operation == "Create"
