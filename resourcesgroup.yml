@@ -9,6 +9,10 @@
     operation: "{{ Operation }}" 
 
   tasks:
+    - name: DISPLAY Operation
+      debug:
+        var: operation
+
     - name: Create resource-groups and register the created group name     
       shell: |            
         {{ aws_cli_path }} resource-groups create-group \
