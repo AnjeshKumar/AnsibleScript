@@ -40,4 +40,3 @@
       debug:
         msg: "Delete resource-groups"
       when: operation == "Delete"
-	  
