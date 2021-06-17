@@ -1,0 +1,25 @@
+---
+- name: Automate the aws os pacthing activity
+  hosts: tag_Name_ict_provisioner 
+
+  vars:
+    aws_cli_path: '/usr/bin/aws'
+    resources_grp: "{{ resources_grp_name }}"
+    mw_nm: "{{ mw_name }}" 
+    operation: "{{ operation }}" 
+
+    tasks:
+    - name: Create resource-groups and register the created group name     
+      debug:
+        var: operation
+      when: operation == "Create"
+  
+    - name: Create resource-groups and register the created group name     
+      debug:
+        var: operation
+      when: operation == "Update"
+
+    - name: Create resource-groups and register the created group name     
+      debug:
+        var: operation
+      when: operation == "Delete"
