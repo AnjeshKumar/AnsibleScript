@@ -1,0 +1,12 @@
+{
+    "Operation": "Create",
+    "Name": "",
+    "Description": "",
+    "ResourceQuery": {
+        "Type": "CLOUDFORMATION_STACK_1_0",
+        "Query": ""
+    },
+    "Tags": {
+        "KeyName": ""
+    }
+}
