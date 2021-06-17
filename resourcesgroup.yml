@@ -37,7 +37,6 @@
       shell: |            
         {{ aws_cli_path }} resource-groups delete-group \
             --group-name {{ GroupName }}
-
       debug:
         msg: "Delete resource-groups"
       when: operation == "Delete"
