@@ -20,6 +20,7 @@
             --name {{ Name }} \
             --description {{ Description }} \
             --resource-query '{"Type": {{ ResourceQuery.Type }},"Query": {{ ResourceQuery.Query }}'          
+            -- tags {{ Tags.KeyName}}
       register: resource_groups_output
       when: operation == "Create"
      
