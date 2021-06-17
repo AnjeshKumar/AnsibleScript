@@ -1,0 +1,8 @@
+---
+- name: Manage AWS resources
+  hosts: tag_Name_ict_provisioner
+  
+  vars_files:
+    - vars/tenant.yml
+  roles:
+    - create-resources
