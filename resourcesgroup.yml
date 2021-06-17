@@ -16,7 +16,7 @@
             --name {{ resources_grp }} \
             --description "Group of win EC2 testable instances" \
             --resource-query '{"Type":"TAG_FILTERS_1_0","Query":"{\"ResourceTypeFilters\":[\"AWS::EC2::Instance\"],\"TagFilters\":[{\"Key\":\"PatchGroup\",\"Values\":[\"TestableWinGrp\"]}]}"}'          
-      register: resource_groups_output       
+           
       debug:
         msg: "Create resource-groups"
       when: operation == "Create"
