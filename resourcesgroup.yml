@@ -19,8 +19,8 @@
         {{ aws_cli_path }} resource-groups create-group \            
             --name {{ Name }} \
             --description {{ Description }} \
-            --resource-query '{"Type": {{ ResourceQuery.Type }},"Query": {{ ResourceQuery.Query }}' \          
-            --tags {{ Tags.KeyName}}
+            --resource-query '{"Type": {{ ResourceQuery.Type }},"Query": {{ ResourceQuery.Query }}'          
+           
       register: resource_groups_output
       when: operation == "Create"
      
