@@ -9,7 +9,7 @@
     operation: "{{ Operation }}" 
     query1: "{\"ResourceTypeFilters\":[\"AWS::EC2::Instance\"],\"TagFilters\":[{\"Key\":\"PatchGroup\",\"Values\":[\"TestableWinGrp\"]}]}"
     query: '{"ResourceTypeFilters":["AWS::EC2::Instance"],"TagFilters":[{"Key":"PatchGroup","Values":["TestableWinGrp"]}]}'
-    query2: {{ query | to_json | tojson }}
+    query2: '{{ query | to_json | tojson }}''
   tasks:
     - name: DISPLAY Operation
       debug:
