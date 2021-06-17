@@ -11,15 +11,15 @@
     tasks:
     - name: Create resource-groups and register the created group name     
       debug:
-        var: operation
+        msg: "Create resource-groups"
       when: operation == "Create"
   
     - name: Create resource-groups and register the created group name     
       debug:
-        var: operation
+         msg: "Update resource-groups"
       when: operation == "Update"
 
     - name: Create resource-groups and register the created group name     
       debug:
-        var: operation
+         msg: "Delete resource-groups"
       when: operation == "Delete"
