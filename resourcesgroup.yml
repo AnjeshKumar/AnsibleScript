@@ -10,7 +10,7 @@
 
     tasks:
     - name: Create resource-groups and register the created group name
-    shell: |            
+      shell: |            
         {{ aws_cli_path }} resource-groups create-group \
             --region us-east-1 \
             --name {{ resources_grp }} \
