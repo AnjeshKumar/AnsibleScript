@@ -13,32 +13,14 @@
       debug:
         var: operation
 
-    - name: Create resource-groups and register the created group name
+    - name: Create resource-groups and register the created group name     
       shell: |            
         {{ aws_cli_path }} resource-groups create-group \
             --region us-east-1 \
             --name {{ resources_grp }} \
             --description "Group of win EC2 testable instances" \
             --resource-query '{"Type":"TAG_FILTERS_1_0","Query":"{\"ResourceTypeFilters\":[\"AWS::EC2::Instance\"],\"TagFilters\":[{\"Key\":\"PatchGroup\",\"Values\":[\"TestableWinGrp\"]}]}"}'          
-           
+      register: resource_groups_output        
       debug:
-        msg: "Create resource-groups"
-      when: operation == "Create"
-  
-    - name: Update resource-groups and register the created group name     
-      shell: |            
-        {{ aws_cli_path }} resource-groups update-group \  
-            --group-name {{ GroupName }} \
-            --description {{ Description }}
-      debug:
-         msg: "Update resource-groups"
-      when: operation == "Update"
-
-    - name: Delete resource-groups and register the created group name     
-      shell: |            
-        {{ aws_cli_path }} resource-groups delete-group \
-            --group-name {{ GroupName }}
-
-      debug:
-         msg: "Delete resource-groups"
-      when: operation == "Delete"
+        var: resource_groups_output
+     
