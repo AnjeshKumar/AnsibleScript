@@ -23,3 +23,22 @@
       register: resource_groups_output
       when: operation == "Create"
      
+
+     - name: Update resource-groups and register the created group name     
+      shell: |            
+        {{ aws_cli_path }} resource-groups update-group \  
+            --group-name {{ GroupName }} \
+            --description {{ Description }}
+      debug:
+         msg: "Update resource-groups"
+      when: operation == "Update"
+
+      - name: Delete resource-groups and register the created group name     
+      shell: |            
+        {{ aws_cli_path }} resource-groups delete-group \
+            --group-name {{ GroupName }}
+
+      debug:
+         msg: "Delete resource-groups"
+      when: operation == "Delete"
+	  
