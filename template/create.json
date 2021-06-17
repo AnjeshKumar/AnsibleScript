@@ -7,6 +7,6 @@
         "Query": "{ResourceTypeFilters:[AWS::EC2::Instance],TagFilters:[{Key:PatchGroup,Values:[TestableWinGrp]}]}"
     },
     "Tags": {
-        "KeyName": "{Name: Anjesh, Last: Kumar}"
+        "KeyName": ""
     }
 }
