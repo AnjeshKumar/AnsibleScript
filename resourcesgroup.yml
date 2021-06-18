@@ -7,15 +7,11 @@
     resources_grp: "{{ Name }}"
     mw_nm: "{{ mw_name }}" 
     operation: "{{ Operation }}" 
-    query1: "{\"ResourceTypeFilters\":[\"AWS::EC2::Instance\"],\"TagFilters\":[{\"Key\":\"PatchGroup\",\"Values\":[\"TestableWinGrp\"]}]}"
-    query: '{"ResourceTypeFilters":["AWS::EC2::Instance"],"TagFilters":[{"Key":"PatchGroup","Values":["TestableWinGrp"]}]}'
-    query2: '{{ query | to_json  }}'
+   
   tasks:
     - name: DISPLAY Operation
       debug:
-        var: Description
-        var: query
-        var: query2
+        var: operation        
 
     - name: Create resource-groups and register the created group name     
       shell: |            

@@ -1,12 +1,12 @@
 {
     "Operation": "Create",
-    "Name": "",
-    "Description": "",
+    "Name": "GroupName",
+    "Description": "description add here",
     "ResourceQuery": {
-        "Type": "CLOUDFORMATION_STACK_1_0",
-        "Query": ""
+     "Type": "TAG_FILTERS_1_0",
+     "Query": "{\"ResourceTypeFilters\":[\"AWS::EC2::Instance\"],\"TagFilters\":[{\"Key\":\"PatchGroup\",\"Values\":[\"TestableWinGrp\"]}]}"
     },
     "Tags": {
-        "KeyName": ""
+     "KeyName": ""
     }
 }
