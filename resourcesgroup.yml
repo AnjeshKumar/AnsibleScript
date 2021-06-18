@@ -22,7 +22,7 @@
         {{ aws_cli_path }} resource-groups create-group \            
             --name {{ Name }} \
             --description {{ Description }} \
-            --resource-query {{ ResourceQuery | to_json }}     
+            --resource-query '{{ ResourceQuery | to_json }}'     
       register: resource_groups_output
       when: operation == "Create"
      
