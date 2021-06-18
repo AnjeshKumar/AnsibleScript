@@ -22,7 +22,7 @@
         {{ aws_cli_path }} resource-groups create-group \            
             --name {{ Name }} \
             --description {{ Description }} \
-            --resource-query '{"Type":"TAG_FILTERS_1_0","Query": {{ query2 }} }'     
+            --resource-query '{"Type":"TAG_FILTERS_1_0","Query": {{ Resources.ResourceQuery | to_json }} }'     
       register: resource_groups_output
       when: operation == "Create"
      
