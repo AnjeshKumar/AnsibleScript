@@ -1,6 +1,6 @@
 ---
-# Create Resources Migration
+# Manage the AWS Resource groups
 - src: https://github.com/AnjeshKumar/OSPatching/tree/main/ansible/roles/aws-resources-group
   scm: git
   version: master
-  name: create-resources
+  name: manage-aws-resources

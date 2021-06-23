@@ -1,0 +1,25 @@
+---
+- name: Automate the aws maintenance window
+  hosts: tag_Name_ict_provisioner 
+
+  vars:
+    aws_cli_path: '/usr/bin/aws'
+    resources_grp: "{{ Name }}"
+    mw_nm: "{{ mw_name }}" 
+    operation: "{{ Operation }}" 
+   
+  tasks:
+    - name: DISPLAY Operation
+      debug:
+        var: operation        
+
+    - name: Create resource-groups and register the created group name     
+      shell: |            
+        {{ aws_cli_path }} resource-groups create-group \            
+            --name {{ Name }} \
+            --description {{ Description }} \
+            --resource-query '{"Type":{{ ResourceQuery.Type | to_json }},"Query": {{ ResourceQuery.Query | to_json }} }'     
+      register: resource_groups_output
+      when: operation == "Create"    
+
+    

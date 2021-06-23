@@ -32,6 +32,4 @@
             --allow-unassociated-targets                            
       register: mv_output    
   
-    - name: Get the mv_output from output
-      set_fact:
-        mw_id: "{{ mv_output.stdout | from_json | json_query('WindowId')}}"
+   
