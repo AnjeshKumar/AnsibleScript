@@ -16,7 +16,7 @@
     - name: Create resource-groups and register the created group name     
       shell: |            
         {{ aws_cli_path }}  ssm create-maintenance-window \            
-            --name "MW_WIN_Testable" \
+            --name {{ Name }} \
             --schedule 'rate(5 minutes)' \
             --duration 2 \
             --cutoff 1 \
