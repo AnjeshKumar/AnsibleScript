@@ -21,6 +21,8 @@
             --start-date {{ StartDate }} \
             --end-date  {{ EndDate }} \
             --schedule {{ Schedule }} \
+            --schedule-timezone  {{ ScheduleTimezone }} \
+            --schedule-offset  {{ ScheduleOffset }} \
             --duration {{ Duration }} \
             --cutoff {{ Cutoff }} \
             --allow-unassociated-targets                
