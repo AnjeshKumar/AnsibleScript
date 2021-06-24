@@ -20,7 +20,7 @@
             --description "{{ Description }}" \
             --start-date {{ StartDate }} \
             --end-date  {{ EndDate }} \
-            --schedule 'rate(5 minutes)' \
+            --schedule {{ Schedule }} \
             --duration {{ Duration }} \
             --cutoff {{ Cutoff }} \
             --allow-unassociated-targets                
