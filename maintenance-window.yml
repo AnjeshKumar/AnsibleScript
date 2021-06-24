@@ -24,7 +24,8 @@
             --duration {{ Duration }} \
             --cutoff {{ Cutoff }} \
             --allow-unassociated-targets \
-            --client-token {{ ClientToken }}            
+            --client-token {{ ClientToken }} \
+            --tags {{ Tags }}            
       register: mv_output   
       when: operation == "Create"    
 
