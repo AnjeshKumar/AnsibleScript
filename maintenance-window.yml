@@ -17,7 +17,7 @@
       shell: |            
         {{ aws_cli_path }}  ssm create-maintenance-window \            
             --name {{ Name }} \
-            --description {{ Description }} \
+            --description "{{ Description }}" \
             --schedule 'rate(5 minutes)' \
             --duration 2 \
             --cutoff 1 \
