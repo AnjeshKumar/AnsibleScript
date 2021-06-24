@@ -21,8 +21,8 @@
             --start-date {{ StartDate }} \
             --end-date  {{ EndDate }} \
             --schedule 'rate(5 minutes)' \
-            --duration 2 \
-            --cutoff 1 \
+            --duration {{ Duration }} \
+            --cutoff {{ Cutoff }} \
             --allow-unassociated-targets                
       register: mv_output   
       when: operation == "Create"    
