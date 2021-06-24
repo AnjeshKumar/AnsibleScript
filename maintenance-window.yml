@@ -23,7 +23,8 @@
             --schedule {{ Schedule }} \               
             --duration {{ Duration }} \
             --cutoff {{ Cutoff }} \
-            --allow-unassociated-targets                
+            --allow-unassociated-targets \
+            --client-token {{ ClientToken }}            
       register: mv_output   
       when: operation == "Create"    
 
