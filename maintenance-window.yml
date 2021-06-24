@@ -20,8 +20,7 @@
             --description "{{ Description }}" \
             --start-date {{ StartDate }} \
             --end-date  {{ EndDate }} \
-            --schedule {{ Schedule }} \            
-            --schedule-offset  {{ ScheduleOffset }} \
+            --schedule {{ Schedule }} \               
             --duration {{ Duration }} \
             --cutoff {{ Cutoff }} \
             --allow-unassociated-targets                
