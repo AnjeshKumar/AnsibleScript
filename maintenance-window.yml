@@ -16,13 +16,11 @@
     - name: Create resource-groups and register the created group name     
       shell: |            
         {{ aws_cli_path }}  ssm create-maintenance-window \            
-            --name {{ Name }} \
-            --description "{{ Description }}" \                    
-            --schedule {{ Schedule }} \            
-            --duration {{ Duration }} \
-            --cutoff {{ Cutoff }} \
-            --allow-unassociated-targets
-            
+            --name "MW_WIN_Testable" \
+            --schedule 'rate(5 minutes)' \
+            --duration 2 \
+            --cutoff 1 \
+            --allow-unassociated-targets                
       register: mv_output   
       when: operation == "Create"    
 
