@@ -23,9 +23,9 @@
             --schedule {{ Schedule }} \
             --schedule-timezone  {{ ScheduleTimezone }} \
             --schedule-offset  {{ ScheduleOffset }} \
-            --duration 2 \
-            --cutoff 1 \
-            --allow-unassociated-targets \
+            --duration {{ Duration }} \
+            --cutoff {{ Cutoff }} \
+            --allow-unassociated-targets {{ AllowUnassociatedTargets }} \
             --client-token {{ ClientToken }} \
             --tags {{ Tags }}           
            
