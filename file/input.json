@@ -1,0 +1,16 @@
+{
+    "WindowId": "mw-0ab9aafe91afef402",
+    "ResourceType": "RESOURCE_GROUP",
+    "Targets": [
+        {
+            "Key": "Key=resource-groups:Name",
+            "Values": [
+                "RG_Win_Testable"
+            ]
+        }
+    ],
+    "OwnerInformation": "",
+    "Name": "Win_Testable_Target",
+    "Description": "test target",
+    "ClientToken": ""
+}
