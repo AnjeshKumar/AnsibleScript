@@ -12,11 +12,7 @@
     - name: Register target group for maintenance window     
       shell: |            
         {{ aws_cli_path }}  ssm register-target-with-maintenance-window \
-            --region us-east-1 \
-            --window-id mw-0ab9aafe91afef402 \
-            --name "Win_Testable_Target" \
-            --resource-type "RESOURCE_GROUP" \
-            --target "Key=resource-groups:Name,Values=RG_Win_Testable"                           
+            --cli-input-json file://input.json                           
       register: target_output    
   
     - name: Get the target_output from output
