@@ -1,0 +1,29 @@
+---
+- name: Automate the aws os pacthing activity
+  hosts: tag_Name_ict_provisioner 
+
+  vars:
+    aws_cli_path: '/usr/bin/aws'
+    resources_grp: "{{ resources_grp_name }}"
+    mw_nm: "{{ mw_name }}"   
+    
+
+  tasks:           
+    - name: Register target group for maintenance window     
+      shell: |            
+        {{ aws_cli_path }}  ssm register-target-with-maintenance-window \
+            --region us-east-1 \
+            --window-id mw-0ab9aafe91afef402 \
+            --name "Win_Testable_Target" \
+            --resource-type "RESOURCE_GROUP" \
+            --target "Key=resource-groups:Name,Values=RG_Win_Testable"                           
+      register: target_output    
+  
+    - name: Get the target_output from output
+      set_fact:
+        target_id: "{{ target_output.stdout | from_json | json_query('WindowTargetId')}}"
+        
+    - name: DISPLAY target_id
+      debug:
+        var: target_id        
+    
