@@ -12,7 +12,7 @@
     - name: Register target group for maintenance window     
       shell: |            
         {{ aws_cli_path }}  ssm register-target-with-maintenance-window \
-            --cli-input-json file://input.json                           
+            --cli-input-json file:///file/input.json                           
       register: target_output    
   
     - name: Get the target_output from output
